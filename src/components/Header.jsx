@@ -1,20 +1,20 @@
-import React from "react";
-import { useCookies } from "react-cookie";
-import { useSelector, useDispatch } from "react-redux/es/exports";
-import { useNavigate } from "react-router-dom";
-import { signOut } from "../authSlice";
-import "./header.css";
+import React from 'react'
+import { useCookies } from 'react-cookie'
+import { useSelector, useDispatch } from 'react-redux/es/exports'
+import { useNavigate } from 'react-router-dom'
+import { signOut } from '../authSlice'
+import './header.css'
 
 export const Header = () => {
-  const auth = useSelector((state) => state.auth.isSignIn);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const auth = useSelector((state) => state.auth.isSignIn)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [cookies, setCookie, removeCookie] = useCookies()
   const handleSignOut = () => {
-    dispatch(signOut());
-    removeCookie("token");
-    navigate("/signin");
-  };
+    dispatch(signOut())
+    removeCookie('token')
+    navigate('/signin')
+  }
 
   return (
     <header className="header">
@@ -27,5 +27,5 @@ export const Header = () => {
         <></>
       )}
     </header>
-  );
-};
+  )
+}
