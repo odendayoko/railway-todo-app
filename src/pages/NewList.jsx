@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie'
 import axios from 'axios'
 import { Header } from '../components/Header'
 import { url } from '../const'
-import './newList.css'
+import './newList.scss'
 import { useNavigate } from 'react-router-dom'
 
 export const NewList = () => {
