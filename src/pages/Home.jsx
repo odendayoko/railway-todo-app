@@ -76,7 +76,9 @@ export const Home = () => {
                 <Link to="/list/new">リスト新規作成</Link>
               </p>
               <p>
-                <Link to={`/lists/${selectListId}/edit`}>選択中のリストを編集</Link>
+                <Link to={`/lists/${selectListId}/edit`}>
+                  選択中のリストを編集
+                </Link>
               </p>
             </div>
           </div>
@@ -100,12 +102,19 @@ export const Home = () => {
               <Link to="/task/new">タスク新規作成</Link>
             </div>
             <div className="display-select-wrapper">
-              <select onChange={handleIsDoneDisplayChange} className="display-select">
+              <select
+                onChange={handleIsDoneDisplayChange}
+                className="display-select"
+              >
                 <option value="todo">未完了</option>
                 <option value="done">完了</option>
               </select>
             </div>
-            <Tasks tasks={tasks} selectListId={selectListId} isDoneDisplay={isDoneDisplay} />
+            <Tasks
+              tasks={tasks}
+              selectListId={selectListId}
+              isDoneDisplay={isDoneDisplay}
+            />
           </div>
         </div>
       </main>
@@ -127,7 +136,10 @@ const Tasks = (props) => {
           })
           .map((task, key) => (
             <li key={key} className="task-item">
-              <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
+              <Link
+                to={`/lists/${selectListId}/tasks/${task.id}`}
+                className="task-item-link"
+              >
                 {task.title}
                 <br />
                 {task.done ? '完了' : '未完了'}
@@ -146,7 +158,10 @@ const Tasks = (props) => {
         })
         .map((task, key) => (
           <li key={key} className="task-item">
-            <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
+            <Link
+              to={`/lists/${selectListId}/tasks/${task.id}`}
+              className="task-item-link"
+            >
               {task.title}
               <br />
               {task.done ? '完了' : '未完了'}

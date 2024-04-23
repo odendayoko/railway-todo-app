@@ -63,7 +63,10 @@ export const NewTask = () => {
         <form className="new-task-form">
           <label>リスト</label>
           <br />
-          <select onChange={(e) => handleSelectList(e.target.value)} className="new-task-select-list">
+          <select
+            onChange={(e) => handleSelectList(e.target.value)}
+            className="new-task-select-list"
+          >
             {lists.map((list, key) => (
               <option key={key} className="list-item" value={list.id}>
                 {list.title}
@@ -73,13 +76,25 @@ export const NewTask = () => {
           <br />
           <label>タイトル</label>
           <br />
-          <input type="text" onChange={handleTitleChange} className="new-task-title" />
+          <input
+            type="text"
+            onChange={handleTitleChange}
+            className="new-task-title"
+          />
           <br />
           <label>詳細</label>
           <br />
-          <textarea type="text" onChange={handleDetailChange} className="new-task-detail" />
+          <textarea
+            type="text"
+            onChange={handleDetailChange}
+            className="new-task-detail"
+          />
           <br />
-          <button type="button" className="new-task-button" onClick={onCreateTask}>
+          <button
+            type="button"
+            className="new-task-button"
+            onClick={onCreateTask}
+          >
             作成
           </button>
         </form>

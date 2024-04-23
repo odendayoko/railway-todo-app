@@ -40,9 +40,17 @@ export const NewList = () => {
         <form className="new-list-form">
           <label>タイトル</label>
           <br />
-          <input type="text" onChange={handleTitleChange} className="new-list-title" />
+          <input
+            type="text"
+            onChange={handleTitleChange}
+            className="new-list-title"
+          />
           <br />
-          <button type="button" onClick={onCreateList} className="new-list-button">
+          <button
+            type="button"
+            onClick={onCreateList}
+            className="new-list-button"
+          >
             作成
           </button>
         </form>

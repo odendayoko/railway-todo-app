@@ -42,11 +42,19 @@ export const SignIn = () => {
         <form className="signin-form">
           <label className="email-label">メールアドレス</label>
           <br />
-          <input type="email" className="email-input" onChange={handleEmailChange} />
+          <input
+            type="email"
+            className="email-input"
+            onChange={handleEmailChange}
+          />
           <br />
           <label className="password-label">パスワード</label>
           <br />
-          <input type="password" className="password-input" onChange={handlePasswordChange} />
+          <input
+            type="password"
+            className="password-input"
+            onChange={handlePasswordChange}
+          />
           <br />
           <button type="button" className="signin-button" onClick={onSignIn}>
             サインイン

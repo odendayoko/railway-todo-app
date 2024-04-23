@@ -72,12 +72,25 @@ export const EditList = () => {
         <form className="edit-list-form">
           <label>タイトル</label>
           <br />
-          <input type="text" className="edit-list-title" value={title} onChange={handleTitleChange} />
+          <input
+            type="text"
+            className="edit-list-title"
+            value={title}
+            onChange={handleTitleChange}
+          />
           <br />
-          <button type="button" className="delete-list-button" onClick={onDeleteList}>
+          <button
+            type="button"
+            className="delete-list-button"
+            onClick={onDeleteList}
+          >
             削除
           </button>
-          <button type="button" className="edit-list-button" onClick={onUpdateList}>
+          <button
+            type="button"
+            className="edit-list-button"
+            onClick={onUpdateList}
+          >
             更新
           </button>
         </form>
