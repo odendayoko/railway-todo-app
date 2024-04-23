@@ -1,47 +1,59 @@
+$primary-color: pink;
+
 .taskList {
   margin: 50px auto;
   list-style: none;
   width: 1000px;
-}
 
-.list-header {
-  display: flex;
-  justify-content: space-between;
-}
+  .error-message {
+    color: #ff3333;
+  }
 
-.list-menu {
-  text-align: right;
-}
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+  }
 
-.list-tab {
-  list-style: none;
-  display: flex;
-  overflow-x: auto;
-}
+  .list-menu {
+    text-align: right;
+  }
 
-.list-tab-item {
-  flex-shrink: 0;
-  width: 100px;
-  padding: 0 25px;
-  text-overflow: normal;
-  margin-right: 5px;
-  border: solid 1px #242f9b;
-  justify-content: center;
-  align-items: center;
-}
+  .list-tab {
+    list-style: none;
+    display: flex;
+    overflow-x: auto;
 
-.active {
-  background-color: #242f9b;
-  color: #ffffff;
+    .list-tab-item {
+      flex-shrink: 0;
+      width: 100px;
+      padding: 0 25px;
+      text-overflow: normal;
+      margin-right: 5px;
+      border: solid 1px $primary-color;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .active {
+      background-color: $primary-color;
+      color: #ffffff;
+    }
+  }
 }
 
 .tasks {
   margin-top: 25px;
-}
-
-.tasks-header {
-  display: flex;
-  justify-content: space-between;
+  .tasks-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .display-select-wrapper {
+    width: 100px;
+    margin: 0 0 25px auto;
+    .display-select {
+      width: 100%;
+    }
+  }
 }
 
 .task-item {
@@ -52,25 +64,11 @@
   padding-left: 25px;
   font-size: large;
   border: solid 1px #ffffff;
-}
-
-.task-item-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: #000000;
-}
-
-.error-message {
-  color: #ff3333;
-}
-
-.display-select-wrapper {
-  width: 100px;
-  margin: 0 0 25px auto;
-}
-
-.display-select {
-  width: 100%;
+  .task-item-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000000;
+  }
 }
