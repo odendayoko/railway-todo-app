@@ -10,18 +10,24 @@ export const NewTask = () => {
   const [selectListId, setSelectListId] = useState()
   const [lists, setLists] = useState([])
   const [title, setTitle] = useState('')
+  const [dueDate, setDueDate] = useState('')
   const [detail, setDetail] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [cookies] = useCookies()
   const navigate = useNavigate()
   const handleTitleChange = (e) => setTitle(e.target.value)
   const handleDetailChange = (e) => setDetail(e.target.value)
+  const handleDueDateChange = (e) => setDueDate(e.target.value)
   const handleSelectList = (id) => setSelectListId(id)
   const onCreateTask = () => {
+    const formattedDueDate = dueDate ? `${dueDate}Z` : null
+    console.log(dueDate)
+
     const data = {
       title: title,
       detail: detail,
       done: false,
+      limit: formattedDueDate,
     }
 
     axios
@@ -80,6 +86,16 @@ export const NewTask = () => {
             type="text"
             onChange={handleTitleChange}
             className="new-task-title"
+          />
+          <br />
+          <label>期限</label>
+          <br />
+          <input
+            type="datetime-local"
+            value={dueDate}
+            onChange={handleDueDateChange}
+            className="new-task-date"
+            step={1}
           />
           <br />
           <label>詳細</label>
