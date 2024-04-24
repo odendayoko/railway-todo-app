@@ -20,8 +20,7 @@ export const NewTask = () => {
   const handleDueDateChange = (e) => setDueDate(e.target.value)
   const handleSelectList = (id) => setSelectListId(id)
   const onCreateTask = () => {
-    const formattedDueDate = dueDate ? `${dueDate}Z` : null
-    console.log(dueDate)
+    const formattedDueDate = dueDate ? `${dueDate}:00Z` : null
 
     const data = {
       title: title,
@@ -95,7 +94,6 @@ export const NewTask = () => {
             value={dueDate}
             onChange={handleDueDateChange}
             className="new-task-date"
-            step={1}
           />
           <br />
           <label>詳細</label>
