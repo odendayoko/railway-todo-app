@@ -12,17 +12,21 @@ export const EditTask = () => {
   const [cookies] = useCookies()
   const [title, setTitle] = useState('')
   const [detail, setDetail] = useState('')
+  const [dueDate, setDueDate] = useState('')
   const [isDone, setIsDone] = useState()
   const [errorMessage, setErrorMessage] = useState('')
   const handleTitleChange = (e) => setTitle(e.target.value)
   const handleDetailChange = (e) => setDetail(e.target.value)
+  const handleDueDateChange = (e) => setDueDate(e.target.value)
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done')
   const onUpdateTask = () => {
-    console.log(isDone)
+    const formattedDueDate = dueDate ? `${dueDate}:00Z` : null
+
     const data = {
       title: title,
       detail: detail,
       done: isDone,
+      limit: formattedDueDate,
     }
 
     axios
@@ -64,8 +68,11 @@ export const EditTask = () => {
       })
       .then((res) => {
         const task = res.data
+        const limitDate = new Date(task.limit)
+        const formattedLimitDate = limitDate.toISOString().slice(0, 16)
         setTitle(task.title)
         setDetail(task.detail)
+        setDueDate(formattedLimitDate)
         setIsDone(task.done)
       })
       .catch((err) => {
@@ -88,6 +95,16 @@ export const EditTask = () => {
             className="edit-task-title"
             value={title}
           />
+          <br />
+          <label>期限</label>
+          <br />
+          <input
+            type="datetime-local"
+            value={dueDate}
+            onChange={handleDueDateChange}
+            className="new-task-date"
+          />
+          <br />
           <br />
           <label>詳細</label>
           <br />
