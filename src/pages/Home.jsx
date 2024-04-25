@@ -122,21 +122,36 @@ export const Home = () => {
   )
 }
 
-const formattedLimitDate = (dateTimeString) => {
-  const dateTime = new Date(dateTimeString)
-  const year = dateTime.getFullYear()
-  const month = String(dateTime.getMonth() + 1).padStart(2, '0')
-  const day = String(dateTime.getDate()).padStart(2, '0')
-  const hours = String(dateTime.getHours()).padStart(2, '0')
-  const minutes = String(dateTime.getMinutes()).padStart(2, '0')
-  const formattedDateTime = `${year}/${month}/${day} ${hours}:${minutes}`
-  return formattedDateTime
-}
-
 // 表示するタスク
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props
-  console.log(tasks.map((task) => task.limit))
+
+  const formattedLimitDate = (dateTimeString) => {
+    const dateTime = new Date(dateTimeString)
+    const year = dateTime.getFullYear()
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0')
+    const day = String(dateTime.getDate()).padStart(2, '0')
+    const hours = String(dateTime.getHours()).padStart(2, '0')
+    const minutes = String(dateTime.getMinutes()).padStart(2, '0')
+    const formattedDateTime = `${year}/${month}/${day} ${hours}:${minutes}`
+    return formattedDateTime
+  }
+
+  const getRemainingTime = (limitDateString) => {
+    const currentDate = new Date()
+    const limitDate = new Date(limitDateString)
+    const diffInMilliseconds = limitDate.getTime() - currentDate.getTime()
+    const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24))
+    const diffInHours = Math.floor(
+      (diffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    )
+    const diffInMinutes = Math.floor(
+      (diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60),
+    )
+
+    return `（残り${diffInDays}日${diffInHours}時間${diffInMinutes}分）`
+  }
+
   if (tasks === null) return <></>
 
   if (isDoneDisplay == 'done') {
@@ -179,6 +194,7 @@ const Tasks = (props) => {
               {task.title}
               <br />
               {formattedLimitDate(task.limit)}
+              {getRemainingTime(task.limit)}
               <br />
               {task.done ? '完了' : '未完了'}
             </Link>
