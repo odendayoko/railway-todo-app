@@ -122,9 +122,21 @@ export const Home = () => {
   )
 }
 
+const formattedLimitDate = (dateTimeString) => {
+  const dateTime = new Date(dateTimeString)
+  const year = dateTime.getFullYear()
+  const month = String(dateTime.getMonth() + 1).padStart(2, '0')
+  const day = String(dateTime.getDate()).padStart(2, '0')
+  const hours = String(dateTime.getHours()).padStart(2, '0')
+  const minutes = String(dateTime.getMinutes()).padStart(2, '0')
+  const formattedDateTime = `${year}/${month}/${day} ${hours}:${minutes}`
+  return formattedDateTime
+}
+
 // 表示するタスク
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props
+  console.log(tasks.map((task) => task.limit))
   if (tasks === null) return <></>
 
   if (isDoneDisplay == 'done') {
@@ -141,6 +153,8 @@ const Tasks = (props) => {
                 className="task-item-link"
               >
                 {task.title}
+                <br />
+                {formattedLimitDate(task.limit)}
                 <br />
                 {task.done ? '完了' : '未完了'}
               </Link>
@@ -163,6 +177,8 @@ const Tasks = (props) => {
               className="task-item-link"
             >
               {task.title}
+              <br />
+              {formattedLimitDate(task.limit)}
               <br />
               {task.done ? '完了' : '未完了'}
             </Link>
