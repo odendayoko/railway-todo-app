@@ -82,14 +82,41 @@ export const Home = () => {
               </p>
             </div>
           </div>
-          <ul className="list-tab">
+          <ul
+            className="list-tab"
+            role="tablist"
+            aria-activedescendant={`list-tab-item-${selectListId}`}
+          >
             {lists.map((list, key) => {
               const isActive = list.id === selectListId
               return (
                 <li
                   key={key}
+                  id={`list-tab-item-${list.id}`}
                   className={`list-tab-item ${isActive ? 'active' : ''}`}
                   onClick={() => handleSelectList(list.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleSelectList(list.id)
+                    } else if (e.key === 'ArrowRight') {
+                      const nextIndex =
+                        (lists.findIndex((l) => l.id === selectListId) + 1) %
+                        lists.length
+                      const nextListId = lists[nextIndex].id
+                      handleSelectList(nextListId)
+                    } else if (e.key === 'ArrowLeft') {
+                      const prevIndex =
+                        (lists.findIndex((l) => l.id === selectListId) -
+                          1 +
+                          lists.length) %
+                        lists.length
+                      const prevListId = lists[prevIndex].id
+                      handleSelectList(prevListId)
+                    }
+                  }}
+                  role="tab"
+                  aria-selected={isActive}
+                  tabIndex={isActive ? 0 : -1}
                 >
                   {list.title}
                 </li>
