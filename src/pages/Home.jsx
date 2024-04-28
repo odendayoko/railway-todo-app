@@ -64,88 +64,88 @@ export const Home = () => {
       })
   }
   return (
-    <div>
+    <>
       <Header />
       <main className="taskList">
         <p className="error-message">{errorMessage}</p>
-        <div>
-          <div className="list-header">
-            <h2>リスト一覧</h2>
-            <div className="list-menu">
-              <p>
-                <Link to="/list/new">リスト新規作成</Link>
-              </p>
-              <p>
-                <Link to={`/lists/${selectListId}/edit`}>
-                  選択中のリストを編集
-                </Link>
-              </p>
-            </div>
-          </div>
-          <ul
-            className="list-tab"
-            role="tablist"
-            aria-activedescendant={`list-tab-item-${selectListId}`}
-          >
-            {lists.map((list, key) => {
-              const isActive = list.id === selectListId
-              return (
-                <li
-                  key={key}
-                  id={`list-tab-item-${list.id}`}
-                  className={`list-tab-item ${isActive ? 'active' : ''}`}
-                  onClick={() => handleSelectList(list.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      handleSelectList(list.id)
-                    } else if (e.key === 'ArrowRight') {
-                      const nextIndex =
-                        (lists.findIndex((l) => l.id === selectListId) + 1) %
-                        lists.length
-                      const nextListId = lists[nextIndex].id
-                      handleSelectList(nextListId)
-                    } else if (e.key === 'ArrowLeft') {
-                      const prevIndex =
-                        (lists.findIndex((l) => l.id === selectListId) -
-                          1 +
-                          lists.length) %
-                        lists.length
-                      const prevListId = lists[prevIndex].id
-                      handleSelectList(prevListId)
-                    }
-                  }}
-                  role="tab"
-                  aria-selected={isActive}
-                  tabIndex={isActive ? 0 : -1}
-                >
-                  {list.title}
-                </li>
-              )
-            })}
-          </ul>
-          <div className="tasks">
-            <div className="tasks-header">
-              <h2>タスク一覧</h2>
-              <Link to="/task/new">タスク新規作成</Link>
-            </div>
-            <div className="display-select-wrapper">
-              <select
-                onChange={handleIsDoneDisplayChange}
-                className="display-select"
-              >
-                <option value="todo">未完了</option>
-                <option value="done">完了</option>
-              </select>
-            </div>
-            <Tasks
-              tasks={tasks}
-              selectListId={selectListId}
-              isDoneDisplay={isDoneDisplay}
-            />
+        <div className="list-header">
+          <h2>リスト一覧</h2>
+          <div className="list-menu">
+            <p>
+              <Link to="/list/new">リスト新規作成</Link>
+            </p>
+            <p>
+              <Link to={`/lists/${selectListId}/edit`}>
+                選択中のリストを編集
+              </Link>
+            </p>
           </div>
         </div>
+        <ul
+          className="list-tab"
+          role="tablist"
+          aria-activedescendant={`list-tab-item-${selectListId}`}
+        >
+          {lists.map((list, key) => {
+            const isActive = list.id === selectListId
+            return (
+              <li
+                key={key}
+                id={`list-tab-item-${list.id}`}
+                className={`list-tab-item ${isActive ? 'active' : ''}`}
+                onClick={() => handleSelectList(list.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleSelectList(list.id)
+                  } else if (e.key === 'ArrowRight') {
+                    const nextIndex =
+                      (lists.findIndex((l) => l.id === selectListId) + 1) %
+                      lists.length
+                    const nextListId = lists[nextIndex].id
+                    handleSelectList(nextListId)
+                  } else if (e.key === 'ArrowLeft') {
+                    const prevIndex =
+                      (lists.findIndex((l) => l.id === selectListId) -
+                        1 +
+                        lists.length) %
+                      lists.length
+                    const prevListId = lists[prevIndex].id
+                    handleSelectList(prevListId)
+                  }
+                }}
+                role="tab"
+                aria-selected={isActive}
+                tabIndex={isActive ? 0 : -1}
+              >
+                {list.title}
+              </li>
+            )
+          })}
+        </ul>
+        <div className="tasks">
+          <div className="tasks-header">
+            <h2>タスク一覧</h2>
+            <p className="tasks-createButton">
+              <Link to="/task/new">タスク新規作成</Link>
+            </p>
+          </div>
+          <div className="display-select-wrapper">
+            <select
+              onChange={handleIsDoneDisplayChange}
+              className="display-select"
+            >
+              <option value="todo">未完了</option>
+              <option value="done">完了</option>
+            </select>
+          </div>
+          <Tasks
+            tasks={tasks}
+            selectListId={selectListId}
+            isDoneDisplay={isDoneDisplay}
+          />
+        </div>
       </main>
-    </div>
+    </>
   )
 }
 

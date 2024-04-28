@@ -1,12 +1,11 @@
 @charset "utf-8";
 
 $base-color: #555;
-$error-color: lightgreen;
+$error-color: brown;
 $primary-color: pink;
 $white-color: #fff;
 
 .edit-task {
-  width: 1000px;
   margin: 0 auto;
 
   &-form {
@@ -39,4 +38,24 @@ $white-color: #fff;
 
 .error-message {
   color: $error-color;
+}
+
+@media (max-width: 768px) {
+  .edit-task {
+    width: 90%;
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 320px) {
+  .edit-task {
+    width: 90%;
+    max-width: 320px;
+
+    &-title,
+    &-detail {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
 }

@@ -1,18 +1,15 @@
 @charset "utf-8";
 
 $base-color: #555;
-$error-color: lightgreen;
+$error-color: brown;
 $primary-color: pink;
 $white-color: #fff;
 
 .edit-list {
-  width: 1000px;
   margin: 0 auto;
-
   &-form {
     color: $base-color;
   }
-
   &-title {
     width: 300px;
     margin-bottom: 25px;
@@ -38,4 +35,22 @@ $white-color: #fff;
 
 .error-message {
   color: $error-color;
+}
+
+@media (max-width: 768px) {
+  .edit-list {
+    width: 90%;
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 320px) {
+  .edit-list {
+    width: 90%;
+    max-width: 320px;
+    &-title {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
 }
